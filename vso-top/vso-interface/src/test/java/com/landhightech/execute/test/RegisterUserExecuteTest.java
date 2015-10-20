@@ -30,7 +30,7 @@ public class RegisterUserExecuteTest {
 //					e.printStackTrace();
 //				}
 //				new ClassPathXmlApplicationContext(new String[] { "spring.xml" });
-		JSONObject json = new JSONObject();
+		/*JSONObject json = new JSONObject();
 		json.put("os", "android");
 //		JSONObject user = new JSONObject();
 		json.put("name", "xiaogang");
@@ -41,6 +41,6 @@ public class RegisterUserExecuteTest {
 		context.setJsonRequest(json.toJSONString());
 		BaseInteExecute execute = new RegisterUserExecute();
 		String str = execute.doProcess(context);
-		System.out.println(str);
+		System.out.println(str);*/
 	}
 }

@@ -103,4 +103,15 @@
 	</dependency>
 	<!-- quartz -->
   </dependencies>
+   <build>
+	<plugins>
+ 	 <plugin>
+     	<artifactId>maven-surefire-plugin</artifactId>
+     	<version>2.6</version>
+     	<configuration>
+       	  <skip>true</skip>
+    	 </configuration>
+	 </plugin>
+	 </plugins>
+   </build>
 </project>

@@ -1,18 +1,14 @@
 package com.landhightech.service.test;
 
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
 import com.landhightech.bean.User;
 import com.landhightech.service.IUserService;
 import com.landhightech.service.impl.UserServiceImpl;
-import com.landhightech.util.MyBatisUtil;
-import com.mysql.jdbc.Connection;
 
 public class UserServiceTest {
 	/**

@@ -19,7 +19,7 @@
    <rabbit:admin connection-factory="connectionFactory"/>
     
    <!-- queue 队列声明-->
-   <rabbit:queue id="test_queue" durable="true" auto-delete="false" exclusive="false" name="registerUser"/>
+   <rabbit:queue id="test_queue" durable="true" auto-delete="false" exclusive="false" name="registerUser1"/>
     
    <!-- exchange queue binging key 绑定 -->
     <rabbit:direct-exchange name="my-mq-exchange" durable="true" auto-delete="false" id="my-mq-exchange">

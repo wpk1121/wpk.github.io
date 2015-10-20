@@ -6,7 +6,7 @@
   <packaging>pom</packaging>
   <modules>
   	<module>vso-common</module>
-  	<module>vso-interface</module>
   	<module>vso-mq-client</module>
+  	<module>vso-interface</module>
   </modules>
 </project>

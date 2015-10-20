@@ -48,7 +48,7 @@ public class SendMessage {
 			if(channel!=null){
 				stateChannel.setBusy(true);
 				channel.queueDeclare(queue, true, false, false, null);
-				channel.basicPublish("", queue, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
+				channel.basicPublish("", queue, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("utf-8"));
 				stateChannel.setBusy(false);
 				isSuccess = true;
 				logger.info("send message success:{}",message);
