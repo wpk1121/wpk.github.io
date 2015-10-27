@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.landhightech.mapper.NotifyRecordMapper">
+
+	<!-- <resultMap id="SysLogResultMap2" type="你需要映射的JAVA类">
+		<id property="Java类中的变量名" column="数据库字段名" /> 一般是int主键
+		<result property="Java类中的变量名" column="数据库字段名" />
+		<result property="Java类中的变量名" column="数据库字段名" />
+		<result property="Java类中的变量名" column="数据库字段名" />
+	</resultMap> -->
+
+	<resultMap type="com.landhightech.bean.NotifyReturnData"
+		id="NotifyRecordMapper">
+		<!-- <id property="id" column="id" /> -->
+		<result property="notify_type" column="notify_type" />
+		<result property="pay_type" column="pay_type" />
+		<result property="pay_data" column="pay_data" />
+		<result property="pay_time" column="pay_time" />
+		<result property="ip" column="ip" />
+	</resultMap>
+	
+	<insert id="insertRecord" useGeneratedKeys="false"  keyProperty="" 
+		parameterType="com.landhightech.bean.NotifyReturnData" >
+		insert into vso_notify_record(notify_type,pay_type,pay_data,pay_time,ip)  
+			values(#{notify_type},#{pay_type},#{pay_data},#{pay_time},#{ip})
+	</insert>
+</mapper> 
