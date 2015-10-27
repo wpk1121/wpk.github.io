@@ -27,10 +27,6 @@ import com.landhightech.util.PropertiesInMemory;
 public class Start implements ServletContextListener,InterfasePropsKey {
 
 	private final Logger logger = LoggerFactory.getLogger(Start.class);
-	//保存execute名称与path对应关系
-	public static final Map<String, String> executes = new HashMap<String, String>();
-	//保存配置文件key-valuse
-	public static final Map<String, String> props = new HashMap<String, String>();
 	/**
 	 *  @see ServletContextListener#contextInitialized
 	 */
@@ -38,10 +34,10 @@ public class Start implements ServletContextListener,InterfasePropsKey {
 	public void contextInitialized(ServletContextEvent sce) {
 		logger.info("start load Properties...");
 		//加载execute配置文件.
-		PropertiesInMemory proper = new PropertiesInMemory();
-		proper.inMemory("executeMapper.properties", executes);
-		proper.inMemory("threadpool.properties", props);
-		proper.inMemory("rabbitmq.properties", props);
+//		PropertiesInMemory proper = new PropertiesInMemory();
+//		proper.inMemory("executeMapper.properties", executes);
+//		proper.inMemory("threadpool.properties", props);
+//		proper.inMemory("rabbitmq.properties", props);
 		//初始化线城池
 		try {
 			SendMqThreadPool.init();
@@ -55,7 +51,6 @@ public class Start implements ServletContextListener,InterfasePropsKey {
 				Integer.parseInt(props.get(MqKey.CHECK_REGISTER_USEr_START)), 
 				Integer.parseInt(props.get(MqKey.CHECK_REGISTER_USER_TIME)), 
 				TimeUnit.SECONDS);*/
-		logger.info("Executes Size:{}" , executes.size());
 		logger.info("load Properties end.");
 	}
 

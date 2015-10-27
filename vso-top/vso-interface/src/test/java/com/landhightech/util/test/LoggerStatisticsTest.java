@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import com.alibaba.fastjson.JSONObject;
 import com.landhightech.domain.Context;
+import com.landhightech.mq.SendMessage;
+import com.landhightech.quartz.mq.SendFailUserJob;
 import com.landhightech.util.LoggerStatistics;
 
 public class LoggerStatisticsTest {
@@ -24,5 +26,10 @@ public class LoggerStatisticsTest {
 		context.setMethod("lottery");
 		LoggerStatistics log = new LoggerStatistics(context);
 		log.loginfo();
+//		log.logger.error("111");
+//		SendMessage.getInstance().logger.error("aaa");
+//		new SendFailUserJob().work();
+//		new SendFailUserJob().logger.error("bbb");
+//		new RegisterUserExecute().logger.info("aaa1");
 	}
 }

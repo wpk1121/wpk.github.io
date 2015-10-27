@@ -8,9 +8,9 @@ import com.landhightech.bean.User;
 import com.landhightech.constant.PropsKey;
 import com.landhightech.domain.Response;
 import com.landhightech.execute.AbstractvalidateExecute;
-import com.landhightech.servlet.Start;
-import com.landhightech.thread.SendMqCallable;
+import com.landhightech.thread.mq.SendMqCallable;
 import com.landhightech.threadpool.SendMqThreadPool;
+import com.landhightech.util.InterfacePropUti;
 import com.landhightech.util.PropertiesUtil;
 /**
  * 
@@ -29,14 +29,10 @@ public class RegisterUserExecute extends AbstractvalidateExecute{
 			User user = JSON.parseObject(jobject.toString(), User.class);
 			user.setCreateTime(new Date());
 			user.setMoney(0f);
-//			IUserService userService = UserServiceImpl.getInstance();
-//			Long uid = userService.addUser(user);
 			SendMqThreadPool.execute(new SendMqCallable(JSON.toJSONString(user),
-					Start.props.get(MqKey.QUEUE_REGISTER_USER),
+					InterfacePropUti.getValue(MqKey.QUEUE_REGISTER_USER),
 					PropertiesUtil.getValue(PropsKey.RedisKey.REDIS_FAIL_USER_QUEUE)));
 			Response response = new Response();
-//			if(uid != null)
-//				response.setUid(uid.toString());
 			resultJson = JSON.toJSONString(response);
 		} catch (Exception e) {
 			logger.error(e.getMessage());

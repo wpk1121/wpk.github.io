@@ -12,8 +12,9 @@
                 http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
     
     <!-- spring-quartz -->  
+    <!-- Quertz => timer => task => job\method in class => class -->
     <!-- 处理发送用户信息失败的工作定时任务，5分钟触发一次 -->
-        <bean id="sendFailUserJob" class="com.landhightech.quartz.SendFailUserJob"></bean>
+        <bean id="sendFailUserJob" class="com.landhightech.quartz.mq.SendFailUserJob"></bean>
         <!-- 定义调用对象和调用对象的方法 -->
         <bean id="sendFailUserTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
             <!-- 调用的类 -->
@@ -43,8 +44,43 @@
                 </list>
             </property>
         </bean>
+        
+        
+        <!-- 处理发送支付日志信息失败的工作定时任务，5分钟触发一次 -->
+        <bean id="sendFailNotifyRecordJob" class="com.landhightech.quartz.mq.SendFailNotifyRecordJob"></bean>
+        <!-- 定义调用对象和调用对象的方法 -->
+        <bean id="sendFailNotifyRecordTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+            <!-- 调用的类 -->
+            <property name="targetObject">
+                <ref bean="sendFailNotifyRecordJob"/>
+            </property>
+            <!-- 调用类中的方法 -->
+            <property name="targetMethod">
+                <value>work</value>
+            </property>
+        </bean>
+        <!-- 定义触发时间 -->
+        <bean id="sendFailNotifyRecordTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+            <property name="jobDetail">
+                <ref bean="sendFailNotifyRecordTask"/>
+            </property>
+            <!-- cron表达式 -->
+            <property name="cronExpression">
+                <value>0 0/3 * * * ?</value>
+            </property>
+        </bean>
+        <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+        <bean id="sendFailNotifyRecordQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+            <property name="triggers">
+                <list>
+                    <ref bean="sendFailNotifyRecordTime"/>
+                </list>
+            </property>
+        </bean>
+        
+        
         <!-- 检查mq连接是否使用的工作定时任务,10分钟触发一次 -->
-        <bean id="checkChannelJob" class="com.landhightech.quartz.CheckChannelJob"></bean>
+        <bean id="checkChannelJob" class="com.landhightech.quartz.mq.CheckChannelJob"></bean>
         <!-- 定义调用对象和调用对象的方法 -->
         <bean id="checkChannelTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
             <!-- 调用的类 -->
@@ -63,7 +99,7 @@
             </property>
             <!-- cron表达式 -->
             <property name="cronExpression">
-                <value>0 0/10 * * * ?</value>
+                <value>0 0/20 * * * ?</value>
             </property>
         </bean>
         <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->

@@ -39,6 +39,11 @@ public interface PropsKey {
 		//用户信息数据库插入失败存储到redis的queue名称
 		public String REDIS_FAIL_USERADD_QUEUE = "redis_userAdd_fail";
 		
+		//支付mq发送失败存储到redis的queue名称
+		public String REDIS_FAIL_NOTIFYRECORD_QUEUE = "redis_notifyrecord_fail";
+		//用户信息数据库插入失败存储到redis的queue名称
+		public String REDIS_FAIL_NOTIFYRECORDRADD_QUEUE = "redis_notifyrecordAdd_fail";
+		
 	}
 	
 }

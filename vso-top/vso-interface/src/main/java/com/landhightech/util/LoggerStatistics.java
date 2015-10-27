@@ -6,7 +6,6 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.fastjson.JSON;
 import com.landhightech.domain.Context;
 import com.landhightech.domain.LogBean;
 
@@ -15,6 +14,8 @@ public class LoggerStatistics {
 	public final Logger logger = LoggerFactory.getLogger(this.getClass());
 	//分隔符
 	private static final char separat = '\001';
+	//分隔符
+	private static final char separat_ = ';';
 	//字段为空时打印null
 	private static final String defaultString = "null";
 	//打印日志格式
@@ -26,12 +27,18 @@ public class LoggerStatistics {
 	public LoggerStatistics(Context context) {
 		this.context = context;
 	}
+	public void loginfo(){
+		logger.info(new StringBuffer(context.getMethod())
+		.append(separat_)
+		.append(context.getJsonRequest())
+		.toString());
+	}
 	/**
 	 * 
 	 * @Title: loginfo 
 	 * @Description: 打印日志
 	 */
-	public void loginfo() {
+	/*public void loginfo() {
 		if (context == null || StringUtil.isJsonNvl(context.getJsonRequest())) {
 			return;
 		}
@@ -49,7 +56,7 @@ public class LoggerStatistics {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * 

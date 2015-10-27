@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.landhightech.constant.VsoConstant;
 import com.landhightech.domain.Context;
 import com.landhightech.execute.BaseInteExecute;
+import com.landhightech.util.InterfacePropUti;
 import com.landhightech.util.ResponseSender;
 /**
  * 
@@ -35,7 +36,7 @@ public class BaseInterServlet extends HttpServlet implements VsoConstant{
 		resultJson = BaseInteExecute.getErrorResult(0,MessageConstant.METHOD_ERROR_MESSAGE);
 			
 		if(method != null && !"".equals(method.trim())){
-			String med = Start.executes.get(method);
+			String med = InterfacePropUti.getExcute(method);
 			if (med != null && !"".equalsIgnoreCase(med)) {
 				try {
 					base = (BaseInteExecute) Class.forName(med).newInstance();

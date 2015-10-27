@@ -9,33 +9,124 @@
 		</layout>
 	</appender>
 	<!-- 打印日志的配置，编码gbk,按天分割,最多保存1000个文件,级别info -->
-	<appender name="vsoClient"
+	<appender name="vso-client"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<Encoding>GBK</Encoding>
-		<file>/usr/local/program/vso/client/logs/vsoClient.log</file>
+		<!-- <Encoding>GBK</Encoding>
+		<file>/usr/local/program/vso/client/logs/vso-client.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/usr/local/program/vso/client/logs/vsoClient.%d{yyyy-MM-dd}.log.zip
+			<fileNamePattern>/usr/local/program/vso/client/logs/vso-client.%d{yyyy-MM-dd}.log.zip
 			</fileNamePattern>
 			<maxHistory>1000</maxHistory>
 		</rollingPolicy>
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80}-%msg%n</pattern>
-		</layout>
-		<!-- 打印日志级别info -->
-		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>INFO</level>
+			<pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80};%msg%n</pattern>
+		</layout> -->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">  
+    		<level>ERROR</level>  
+   	 		<onMatch>DENY</onMatch>  
+   	 		<onMismatch>ACCEPT</onMismatch>  
 		</filter>
+	</appender>
+	
+	<appender name="vso-client-job"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>GBK</Encoding>
+		<file>/usr/local/program/vso/client/logs/vso-client-job.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/usr/local/program/vso/client/logs/vso-client-job.%d{yyyy-MM-dd}.log.zip
+			</fileNamePattern>
+			<maxHistory>1000</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80};%msg%n</pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">  
+    		<level>ERROR</level>  
+   	 		<onMatch>DENY</onMatch>  
+   	 		<onMismatch>ACCEPT</onMismatch>  
+		</filter>
+	</appender>
+	
+	<appender name="vso-client-receive"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>GBK</Encoding>
+		<file>/usr/local/program/vso/client/logs/vso-client-receive.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/usr/local/program/vso/client/logs/vso-client-receive.%d{yyyy-MM-dd}.log.zip
+			</fileNamePattern>
+			<maxHistory>1000</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80};%msg%n</pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">  
+    		<level>ERROR</level>  
+   	 		<onMatch>DENY</onMatch>  
+   	 		<onMismatch>ACCEPT</onMismatch>  
+		</filter>
+	</appender>
+	
+	<appender name="vso-client-thread"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>GBK</Encoding>
+		<file>/usr/local/program/vso/client/logs/vso-client-thread.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/usr/local/program/vso/client/logs/vso-client-thread.%d{yyyy-MM-dd}.log.zip
+			</fileNamePattern>
+			<maxHistory>1000</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80};%msg%n</pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">  
+    		<level>ERROR</level>  
+   	 		<onMatch>DENY</onMatch>  
+   	 		<onMismatch>ACCEPT</onMismatch>  
+		</filter>
+	</appender>
+	
+
+	<appender name="error"
+		class="ch.qos.logback.core.rolling.RollingFileAppender" Threshold="ERROR">
+		<Encoding>GBK</Encoding>
+		<file>/usr/local/program/vso/client/logs/vso-client-error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/usr/local/program/vso/client/logs/vso-client-error.%d{yyyy-MM-dd}.log.zip
+			</fileNamePattern>
+			<maxHistory>1000</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80};%msg%n</pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+        	<level>ERROR</level>  
+       		<onMatch>ACCEPT</onMatch>  
+        	<onMismatch>DENY</onMismatch>  
+    	</filter>
 	</appender>
 	
 	
 	<!-- com.landhightech包下打印日志对应vsoExecute的配置,级别为info -->
 	<logger name="com.landhightech" level="INFO">
-		<appender-ref ref="vsoClient" />
+		<appender-ref ref="vso-client" />
+	</logger>
+	<logger name="com.landhightech.quartz.mq" level="INFO">
+		<appender-ref ref="vso-client-job" />
+	</logger>
+	<logger name="com.landhightech.receive" level="INFO">
+		<appender-ref ref="vso-client-receive" />
+	</logger>
+	<logger name="com.landhightech.thread.mq" level="INFO">
+		<appender-ref ref="vso-client-thread" />
 	</logger>
 	<root>
 		<level value="INFO" />
 		<appender-ref ref="STDOUT" /> 
 	</root>
-
+	
+	<root>
+		<level value="ERROR" />
+		<appender-ref ref="error" />
+	</root>
 
 </configuration>

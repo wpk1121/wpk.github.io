@@ -1,11 +1,12 @@
 package com.landhightech.threadpool;
 
+import java.util.Date;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import com.landhightech.constant.InterfasePropsKey;
-import com.landhightech.servlet.Start;
+import com.landhightech.util.InterfacePropUti;
 
 /**
  * 
@@ -27,10 +28,10 @@ public class SendMqThreadPool implements InterfasePropsKey{
 	 */
 	@SuppressWarnings("unchecked")
 	public static void init() throws Exception{
-		int corePoolSize = Integer.parseInt(Start.props.get(ThreadPoolKey.SENDMQ_COREPOOLSIZE));
-		int maximumPoolSize = Integer.parseInt(Start.props.get(ThreadPoolKey.SENDMQ_MAXIMUMPOOLSIZE));
-		int keepAliveTime = Integer.parseInt(Start.props.get(ThreadPoolKey.SENDMQ_KEEPALIVETIME));
-		int queueSize = Integer.parseInt(Start.props.get(ThreadPoolKey.SENDMQ_QUEUESIZE));
+		int corePoolSize = Integer.parseInt(InterfacePropUti.getValue(ThreadPoolKey.SENDMQ_COREPOOLSIZE));
+		int maximumPoolSize = Integer.parseInt(InterfacePropUti.getValue(ThreadPoolKey.SENDMQ_MAXIMUMPOOLSIZE));
+		int keepAliveTime = Integer.parseInt(InterfacePropUti.getValue(ThreadPoolKey.SENDMQ_KEEPALIVETIME));
+		int queueSize = Integer.parseInt(InterfacePropUti.getValue(ThreadPoolKey.SENDMQ_QUEUESIZE));
 		if(queueSize > 0)
 			linkedBlockingQueue = new LinkedBlockingQueue<Runnable>(queueSize);
 		else 

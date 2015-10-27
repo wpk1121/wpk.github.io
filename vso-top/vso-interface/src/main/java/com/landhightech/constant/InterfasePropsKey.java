@@ -25,6 +25,11 @@ public interface InterfasePropsKey extends PropsKey{
 		public String MQ_PORT = "mqPort";
 		//注册用户queue名称
 		public String QUEUE_REGISTER_USER = "queue_register_user";
+		
+		//注册用户queue名称
+		public String QUEUE_MODIFY_USER = "queue_modify_user";
+		
+		public String QUEUE_NOTIFY_RECORD = "queue_notify_record";
 	}
 	/**
 	 * 

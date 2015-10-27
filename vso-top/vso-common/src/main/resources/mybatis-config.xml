@@ -20,6 +20,7 @@
 
 	<mappers>
 		<mapper resource="com/landhightech/bean/UserMapper.xml" />
+		<mapper resource="com/landhightech/bean/NotifyRecordMapper.xml" />
 	</mappers>
 
 
